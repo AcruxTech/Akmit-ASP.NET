@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Akmit.DataAccess.Contexts;
+using Akmit.Shared.Automapper;
+using AutoMapper;
+using Akmit.Shared.Configurations;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -20,13 +24,13 @@ namespace Akmit
         {
             services.AddCors();
             services.AddControllers();
-            services.AddDbContext<AkmitContext>(p =>
+            services.AddDbContext<Context>(p =>
                 p.UseSqlite("Data Source=database.db; Foreign Keys=True"));
             services.AddAutoMapper(typeof(MicroserviceProfile));
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(options =>
                     {
-                        options.RequireHttpsMetadata = false;
+                        options.RequireHttpsMetadata = false; // поменять!!!!!!! в продакшн
                         options.TokenValidationParameters = new TokenValidationParameters
                         {
                             ValidateIssuer = true,                  
@@ -69,7 +73,7 @@ namespace Akmit
             var mapper = scope.ServiceProvider.GetRequiredService<IMapper>();
             mapper.ConfigurationProvider.AssertConfigurationIsValid();
 
-            var dbContext = scope.ServiceProvider.GetRequiredService<AkmitContext>();
+            var dbContext = scope.ServiceProvider.GetRequiredService<Context>();
             dbContext.Database.Migrate();
 
             app.UseEndpoints(endpoints =>
