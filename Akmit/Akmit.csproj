@@ -23,9 +23,6 @@
     <Folder Include="BusinessLogic\Interfaces\" />
     <Folder Include="BusinessLogic\Models\" />
     <Folder Include="BusinessLogic\Services\" />
-    <Folder Include="DataAccess\Models\" />
-    <Folder Include="DataAccess\Interfaces\" />
-    <Folder Include="DataAccess\DbContext\" />
   </ItemGroup>
 
 </Project>
