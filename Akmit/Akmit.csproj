@@ -20,7 +20,6 @@
   <ItemGroup>
     <Folder Include="Api\Contollers\" />
     <Folder Include="Api\Models\" />
-    <Folder Include="BusinessLogic\Services\" />
   </ItemGroup>
 
 </Project>

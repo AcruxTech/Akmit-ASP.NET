@@ -12,6 +12,5 @@ namespace Akmit.BusinessLogic.Interfaces
         Task<bool> Join(string token, ClassIdentityBlo classIdentityBlo);
         Task<bool> Leave(string token);
         Task<int> RefreshCode(string token);
-        private int GenerateCode(string token) => new Random().Next(100, 1000);
     }
 }
