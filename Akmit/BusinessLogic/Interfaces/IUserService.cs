@@ -10,10 +10,11 @@ namespace Akmit.BusinessLogic.Interfaces
     {
         Task<string> Register(UserIdentityBlo userIdentityBlo);
         Task<string> Auth(UserIdentityBlo userIdentityBlo);
-        Task<UserInformationBlo> Get(string token);
+        Task<UserInformationBlo> GetByToken(string token);
         Task<UserInformationShortBlo> GetById(int id);
         Task<UserInformationBlo> Change(string token, UserUpdateBlo userUpdateBlo);
-        Task<string> ChangePass(string token, string pass, string newPass);
+        Task<UserInformationBlo> ChangePass(string token, string pass, string newPass);
         Task<bool> Delete(string token);
+        Task<bool> IsExist(string email, string login);
     }
 }
