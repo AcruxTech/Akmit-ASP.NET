@@ -113,9 +113,9 @@ namespace Akmit.BusinessLogic.Services
             return _mapper.Map<UserInformationBlo>(user);
         }
 
-        public async Task<bool> Delete(string token)
+        public async Task<bool> Delete(string token, string pass)
         {
-            UserRto user = await _context.Users.FirstOrDefaultAsync(h => h.Token == token);
+            UserRto user = await _context.Users.FirstOrDefaultAsync(h => h.Token == token && h.Password == pass);
 
             if (user == null) throw new NotFound("Пользователя с таким токеном нет");
 

@@ -20,6 +20,10 @@ namespace Akmit.Shared.Automapper
             CreateMap<UserRto, UserInformationShortBlo>()
                 .ForMember(x => x.Login, x => x.MapFrom(m => m.Login))
                 .ForMember(x => x.Role, x => x.MapFrom(m => m.Role));
+
+            CreateMap<ClassRto, ClassInformationBlo>()
+                .ForMember(x => x.Title, x => x.MapFrom(m => m.Title))
+                .ForMember(x => x.SecretCode, x => x.MapFrom(m => m.SecretCode));
         }
     }
 }

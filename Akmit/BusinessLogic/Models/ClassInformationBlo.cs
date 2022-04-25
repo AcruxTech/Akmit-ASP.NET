@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace Akmit.BusinessLogic.Models
 {
-    public class ClassIdentityBlo
+    public class ClassInformationBlo
     {
         public string Title { get; set; }
-        public string SecretCode { get; set; }
+        public int? SecretCode { get; set; }
     }
 }
