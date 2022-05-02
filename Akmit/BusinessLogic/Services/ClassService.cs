@@ -6,24 +6,22 @@ using Akmit.Shared.Exceptions;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Akmit.BusinessLogic.Services
 {
     public class ClassService : IClassService
     {
-        private readonly IContext _context;
+        private readonly IAkmitContext _context;
         private readonly IMapper _mapper;
 
-        public ClassService(IContext context, IMapper mapper)
+        public ClassService(IAkmitContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
 
-        public async Task<ClassInformationBlo> Create(string token, ClassInformationBlo classInformationBlo)
+        public async Task<ClassInformationBlo> Create(string token, string title)
         {
             UserRto user = await _context.Users.FirstOrDefaultAsync(h => h.Token == token);
 
@@ -31,7 +29,7 @@ namespace Akmit.BusinessLogic.Services
 
             ClassRto newClass = new ClassRto()
             {
-                Title = classInformationBlo.Title,
+                Title = title,
                 SecretCode = new Random().Next(100, 1000)
             };
 
@@ -41,14 +39,14 @@ namespace Akmit.BusinessLogic.Services
             return _mapper.Map<ClassInformationBlo>(newClass);
         }
 
-        public async Task<bool> Join(string token, ClassInformationBlo classInformationBlo)
+        public async Task<bool> Join(string token, string title, int secretCode)
         {
             UserRto user = await _context.Users.FirstOrDefaultAsync(h => h.Token == token);
 
             if (user == null) throw new BadRequest("Пользователя с таким токеном нет");
 
-            ClassRto fClass = await _context.Classes.FirstOrDefaultAsync(h => h.Title == classInformationBlo.Title &&
-                h.SecretCode == classInformationBlo.SecretCode);
+            ClassRto fClass = await _context.Classes.FirstOrDefaultAsync(h => h.Title == title &&
+                h.SecretCode == secretCode);
 
             if (fClass == null) throw new BadRequest("Такого класса нет");
 

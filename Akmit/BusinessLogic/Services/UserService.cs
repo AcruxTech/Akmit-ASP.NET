@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Threading.Tasks;
 using Akmit.BusinessLogic.Interfaces;
 using Akmit.BusinessLogic.Models;
@@ -19,26 +17,26 @@ namespace Akmit.BusinessLogic.Services
 {
     public class UserService : IUserService
     {
-        private readonly IContext _context;
+        private readonly IAkmitContext _context;
         private readonly IMapper _mapper;
 
-        public UserService(IContext context, IMapper mapper)
+        public UserService(IAkmitContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
         }
 
-        public async Task<string> Register(UserIdentityBlo userIdentityBlo)
+        public async Task<string> Register(string email, string login, string password)
         {
-            if (await IsExist(userIdentityBlo.Email, userIdentityBlo.Login))
+            if (await IsExist(email, login))
                 throw new BadRequest("Пользователь с такими данными уже существует");
 
-            string token = GenerateToken(userIdentityBlo.Login, Roles.User);
+            string token = GenerateToken(login, Roles.User);
             UserRto user = new UserRto()
             {
-                Login = userIdentityBlo.Login,
-                Email = userIdentityBlo.Email,
-                Password = userIdentityBlo.Password,
+                Login = login,
+                Email = email,
+                Password = password,
                 Role = Roles.User,
                 Token = token,
                 ClassRtoId = null
@@ -50,10 +48,10 @@ namespace Akmit.BusinessLogic.Services
             return token;
         }
 
-        public async Task<string> Auth(UserIdentityBlo userIdentityBlo)
+        public async Task<string> Auth(string identity, string password)
         {
-            UserRto user = await _context.Users.FirstOrDefaultAsync(h => h.Login == userIdentityBlo.Login && 
-                h.Password == userIdentityBlo.Password);
+            UserRto user = await _context.Users.FirstOrDefaultAsync(h => 
+            (h.Login == identity && h.Password == password) || (h.Email == identity && h.Password == password));
 
             if (user == null)
                 throw new BadRequest("Пользователя с такими данными не существует");
@@ -84,14 +82,14 @@ namespace Akmit.BusinessLogic.Services
             return _mapper.Map<UserInformationShortBlo>(user);
         }
 
-        public async Task<UserInformationBlo> Change(string token, UserUpdateBlo userUpdateBlo)
+        public async Task<UserInformationBlo> Change(string token, string newLogin, string newEmail)
         {
             UserRto user = await _context.Users.FirstOrDefaultAsync(h => h.Token == token);
 
             if (user == null) throw new NotFound("Пользователя с таким токеном нет");
 
-            user.Login = userUpdateBlo.Login;
-            user.Email = userUpdateBlo.Email;
+            user.Login = newLogin;
+            user.Email = newEmail;
 
             _context.Users.Update(user);
             await _context.SaveChangesAsync();

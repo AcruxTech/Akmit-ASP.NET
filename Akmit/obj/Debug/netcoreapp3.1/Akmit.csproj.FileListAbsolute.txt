@@ -58,7 +58,6 @@ C:\MyDocuments\Proger\ASP.NET\Akmit\Akmit\bin\Debug\netcoreapp3.1\runtimes\win-a
 C:\MyDocuments\Proger\ASP.NET\Akmit\Akmit\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\e_sqlite3.dll
 C:\MyDocuments\Proger\ASP.NET\Akmit\Akmit\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\e_sqlite3.dll
 C:\MyDocuments\Proger\ASP.NET\Akmit\Akmit\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\e_sqlite3.dll
-C:\MyDocuments\Proger\ASP.NET\Akmit\Akmit\obj\Debug\netcoreapp3.1\Akmit.csproj.AssemblyReference.cache
 C:\MyDocuments\Proger\ASP.NET\Akmit\Akmit\obj\Debug\netcoreapp3.1\Akmit.GeneratedMSBuildEditorConfig.editorconfig
 C:\MyDocuments\Proger\ASP.NET\Akmit\Akmit\obj\Debug\netcoreapp3.1\Akmit.AssemblyInfoInputs.cache
 C:\MyDocuments\Proger\ASP.NET\Akmit\Akmit\obj\Debug\netcoreapp3.1\Akmit.AssemblyInfo.cs
@@ -72,3 +71,4 @@ C:\MyDocuments\Proger\ASP.NET\Akmit\Akmit\obj\Debug\netcoreapp3.1\Akmit.csproj.C
 C:\MyDocuments\Proger\ASP.NET\Akmit\Akmit\obj\Debug\netcoreapp3.1\Akmit.dll
 C:\MyDocuments\Proger\ASP.NET\Akmit\Akmit\obj\Debug\netcoreapp3.1\Akmit.pdb
 C:\MyDocuments\Proger\ASP.NET\Akmit\Akmit\obj\Debug\netcoreapp3.1\Akmit.genruntimeconfig.cache
+C:\MyDocuments\Proger\ASP.NET\Akmit\Akmit\obj\Debug\netcoreapp3.1\Akmit.csproj.AssemblyReference.cache

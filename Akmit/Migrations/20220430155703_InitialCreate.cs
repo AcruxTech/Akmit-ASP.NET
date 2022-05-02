@@ -51,7 +51,8 @@ namespace Akmit.Migrations
                     Email = table.Column<string>(nullable: true),
                     Password = table.Column<string>(nullable: true),
                     Role = table.Column<string>(nullable: true),
-                    ClassRtoId = table.Column<int>(nullable: false)
+                    Token = table.Column<string>(nullable: true),
+                    ClassRtoId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -61,7 +62,7 @@ namespace Akmit.Migrations
                         column: x => x.ClassRtoId,
                         principalTable: "Classes",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Akmit.DataAccess.Models
+﻿namespace Akmit.DataAccess.Models
 {
     public class LessonRto
     {
