@@ -35,21 +35,21 @@ namespace Akmit
 
             services.AddControllers();
 
-            //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            //        .AddJwtBearer(options =>
-            //        {
-            //            options.RequireHttpsMetadata = false;
-            //            options.TokenValidationParameters = new TokenValidationParameters
-            //            {
-            //                ValidateIssuer = true,                  
-            //                ValidIssuer = AuthOptions.ISSUER,      
-            //                ValidateAudience = true,                
-            //                ValidAudience = AuthOptions.AUDIENCE, 
-            //                ValidateLifetime = false,               
-            //                IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),  
-            //                ValidateIssuerSigningKey = true,    
-            //            };
-            //        });
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                    .AddJwtBearer(options =>
+                    {
+                        options.RequireHttpsMetadata = false;
+                        options.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            ValidateIssuer = true,
+                            ValidIssuer = AuthOptions.ISSUER,
+                            ValidateAudience = true,
+                            ValidAudience = AuthOptions.AUDIENCE,
+                            ValidateLifetime = false,
+                            IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
+                            ValidateIssuerSigningKey = true,
+                        };
+                    });
 
             //services.AddCors();
         }
@@ -74,9 +74,9 @@ namespace Akmit
             //   ForwardedHeaders.XForwardedProto
             //});
 
-            //app.UseAuthentication();
+            app.UseAuthentication();
 
-            //app.UseAuthorization();
+            app.UseAuthorization();
 
             using var scope = app.ApplicationServices.CreateScope();
 

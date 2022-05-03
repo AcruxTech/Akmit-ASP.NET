@@ -26,27 +26,17 @@ namespace Akmit.BusinessLogic.Services
             _mapper = mapper;
         }
 
-        public async Task<string> Register(string email, string login, string password)
+        public string Test()
+        {
+            return "ok";
+        }
+
+        /*public async Task<string> Register(string email, string login, string password)
         {
             if (await IsExist(email, login))
                 throw new BadRequest("Пользователь с такими данными уже существует");
 
-            var claims = new List<Claim>
-                {
-                    new Claim(ClaimsIdentity.DefaultNameClaimType, login),
-                    new Claim(ClaimsIdentity.DefaultRoleClaimType, Roles.User)
-                };
-
-            ClaimsIdentity claimsIdentity =
-            new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
-                ClaimsIdentity.DefaultRoleClaimType);
-
-            var jwt = new JwtSecurityToken(
-                    issuer: AuthOptions.ISSUER,
-                    audience: AuthOptions.AUDIENCE,
-                    claims: claimsIdentity.Claims,
-                    signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
-            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
+            string token = GenerateToken(login, Roles.User);
 
             UserRto user = new UserRto()
             {
@@ -54,14 +44,14 @@ namespace Akmit.BusinessLogic.Services
                 Email = email,
                 Password = password,
                 Role = Roles.User,
-                Token = encodedJwt,
+                Token = token,
                 ClassRtoId = null
             };
 
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return encodedJwt;
+            return token;
         }
 
         public async Task<string> Auth(string identity, string password)
@@ -72,24 +62,7 @@ namespace Akmit.BusinessLogic.Services
             if (user == null)
                 throw new BadRequest("Пользователя с такими данными не существует");
 
-            var claims = new List<Claim>
-                {
-                    new Claim(ClaimsIdentity.DefaultNameClaimType, user.Login),
-                    new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role)
-                };
-
-            ClaimsIdentity claimsIdentity =
-            new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
-                ClaimsIdentity.DefaultRoleClaimType);
-
-            var jwt = new JwtSecurityToken(
-                    issuer: AuthOptions.ISSUER,
-                    audience: AuthOptions.AUDIENCE,
-                    claims: claimsIdentity.Claims,
-                    signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
-            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
-
-            return encodedJwt;
+            return GenerateToken(user.Login, user.Role);
         }
 
         public Task<bool> IsExist(string email, string login)
@@ -158,26 +131,26 @@ namespace Akmit.BusinessLogic.Services
             return true;
         }
 
-        //public string GenerateToken(string login, string role)
-        //{
-        //    var claims = new List<Claim>
-        //        {
-        //            new Claim(ClaimsIdentity.DefaultNameClaimType, login),
-        //            new Claim(ClaimsIdentity.DefaultRoleClaimType, role)
-        //        };
+        public string GenerateToken(string login, string role)
+        {
+            var claims = new List<Claim>
+                {
+                    new Claim(ClaimsIdentity.DefaultNameClaimType, login),
+                    new Claim(ClaimsIdentity.DefaultRoleClaimType, role)
+                };
 
-        //    ClaimsIdentity claimsIdentity =
-        //    new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
-        //        ClaimsIdentity.DefaultRoleClaimType);
+            ClaimsIdentity claimsIdentity =
+            new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
+                ClaimsIdentity.DefaultRoleClaimType);
 
-        //    var jwt = new JwtSecurityToken(
-        //            issuer: AuthOptions.ISSUER,
-        //            audience: AuthOptions.AUDIENCE,
-        //            claims: claimsIdentity.Claims,
-        //            signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
-        //    var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
+            var jwt = new JwtSecurityToken(
+                    issuer: AuthOptions.ISSUER,
+                    audience: AuthOptions.AUDIENCE,
+                    claims: claimsIdentity.Claims,
+                    signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
+            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
 
-        //    return encodedJwt;
-        //}
+            return encodedJwt;
+        }*/
     }
 }

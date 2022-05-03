@@ -19,7 +19,13 @@ namespace Akmit.Api.Contollers
             _mapper = mapper;
         }
 
-        [HttpPost("register")]
+        [HttpGet]
+        public ActionResult<string> Test()
+        {
+            return _userService.Test();
+        }
+
+        /*[HttpPost("register")]
         public async Task<ActionResult<string>> Register(UserIdentityDto userIdentityDto) 
         {
             return await _userService.Register(userIdentityDto.Login, userIdentityDto.Email, userIdentityDto.Password);
@@ -38,6 +44,6 @@ namespace Akmit.Api.Contollers
                 _mapper.Map<UserInformationShortDto>(await _userService.GetById(id));
 
             return Ok(userInformationShortDto);        
-        }
+        }*/
     }
 }
