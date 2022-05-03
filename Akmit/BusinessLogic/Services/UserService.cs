@@ -31,7 +31,7 @@ namespace Akmit.BusinessLogic.Services
             return "ok";
         }
 
-        /*public async Task<string> Register(string email, string login, string password)
+        public async Task<string> Register(string email, string login, string password)
         {
             if (await IsExist(email, login))
                 throw new BadRequest("Пользователь с такими данными уже существует");
@@ -151,6 +151,6 @@ namespace Akmit.BusinessLogic.Services
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
 
             return encodedJwt;
-        }*/
+        }
     }
 }

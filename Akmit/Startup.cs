@@ -30,8 +30,12 @@ namespace Akmit
         {
             services.AddAutoMapper(typeof(MicroserviceProfile));
 
+            services.AddDbContext<IAkmitContext, AkmitContext>(p =>
+                p.UseSqlite("Data Source=database.db; Foreign Keys=True"));
             services.AddDbContext<AkmitContext>(p =>
                 p.UseSqlite("Data Source=database.db; Foreign Keys=True"));
+
+            services.AddScoped<IUserService, UserService>();
 
             services.AddControllers();
 
@@ -51,7 +55,7 @@ namespace Akmit
                         };
                     });
 
-            //services.AddCors();
+            services.AddCors();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -63,16 +67,16 @@ namespace Akmit
 
             app.UseRouting();
 
-            //app.UseCors(option => option.WithOrigins("http://localhost:8080", "https://akmit.ru")
-            //                            .AllowAnyMethod()
-            //                            .AllowAnyHeader()
-            //                            .AllowCredentials());
+            app.UseCors(option => option.WithOrigins("http://localhost:8080", "https://akmit.ru")
+                                        .AllowAnyMethod()
+                                        .AllowAnyHeader()
+                                        .AllowCredentials());
 
-            //app.UseForwardedHeaders(new ForwardedHeadersOptions
-            //{
-            //    ForwardedHeaders = ForwardedHeaders.XForwardedFor |
-            //   ForwardedHeaders.XForwardedProto
-            //});
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor |
+               ForwardedHeaders.XForwardedProto
+            });
 
             app.UseAuthentication();
 

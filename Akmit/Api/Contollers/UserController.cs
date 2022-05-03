@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Akmit.Api.Contollers
 {
     [Route("api/[controller]")]
-    [Controller]
+    [ApiController]
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
@@ -19,13 +19,7 @@ namespace Akmit.Api.Contollers
             _mapper = mapper;
         }
 
-        [HttpGet]
-        public ActionResult<string> Test()
-        {
-            return _userService.Test();
-        }
-
-        /*[HttpPost("register")]
+        [HttpPost("register")]
         public async Task<ActionResult<string>> Register(UserIdentityDto userIdentityDto) 
         {
             return await _userService.Register(userIdentityDto.Login, userIdentityDto.Email, userIdentityDto.Password);
@@ -44,6 +38,6 @@ namespace Akmit.Api.Contollers
                 _mapper.Map<UserInformationShortDto>(await _userService.GetById(id));
 
             return Ok(userInformationShortDto);        
-        }*/
+        }
     }
 }
