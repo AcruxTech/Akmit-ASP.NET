@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Akmit.Api.Contollers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    [Controller]
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;

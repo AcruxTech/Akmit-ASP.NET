@@ -13,5 +13,6 @@ namespace Akmit.BusinessLogic.Interfaces
         Task<UserInformationBlo> ChangePass(string token, string pass, string newPass);
         Task<bool> Delete(string token, string pass);
         Task<bool> IsExist(string email, string login);
+        //string GenerateToken(string login, string role);
     }
 }
