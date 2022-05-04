@@ -42,7 +42,7 @@ namespace Akmit
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(options =>
                     {
-                        options.RequireHttpsMetadata = false;
+                        options.RequireHttpsMetadata = false;   //!!!
                         options.TokenValidationParameters = new TokenValidationParameters
                         {
                             ValidateIssuer = true,

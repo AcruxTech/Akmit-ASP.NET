@@ -26,11 +26,6 @@ namespace Akmit.BusinessLogic.Services
             _mapper = mapper;
         }
 
-        public string Test()
-        {
-            return "ok";
-        }
-
         public async Task<string> Register(string email, string login, string password)
         {
             if (await IsExist(email, login))

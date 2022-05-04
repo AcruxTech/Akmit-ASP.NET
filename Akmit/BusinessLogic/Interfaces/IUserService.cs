@@ -5,7 +5,6 @@ namespace Akmit.BusinessLogic.Interfaces
 {
     public interface IUserService
     {
-        string Test();
         Task<string> Register(string login, string email, string password);
         Task<string> Auth(string identity, string password);
         Task<UserInformationBlo> GetByToken(string token);

@@ -7,7 +7,7 @@ namespace Akmit.Shared.Configurations
     {
         public const string ISSUER = "Akmit"; 
         public const string AUDIENCE = "Akmit";
-        const string KEY = "mysupersecret_secretkey!123";  // поменять!!!!!!!
+        const string KEY = "mysupersecret_secretkey!123";   //!!!
         public static SymmetricSecurityKey GetSymmetricSecurityKey()
         {
             return new SymmetricSecurityKey(Encoding.ASCII.GetBytes(KEY));
