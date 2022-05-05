@@ -24,7 +24,7 @@ namespace Akmit.Api.Contollers
         public async Task<ActionResult<string>> Register(UserIdentityDto userIdentityDto) 
         {
             try {
-                return await _userService.Register(userIdentityDto.Login, userIdentityDto.Email, userIdentityDto.Password);
+                return await _userService.Register(userIdentityDto.Email, userIdentityDto.Login, userIdentityDto.Password);
             }
             catch (BadRequest)
             {
