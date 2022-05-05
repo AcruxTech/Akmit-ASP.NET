@@ -49,15 +49,14 @@ namespace Akmit.BusinessLogic.Services
             return token;
         }
 
-        public async Task<string> Auth(string identity, string password)
+        public async Task<string> Auth(string login, string password)
         {
-            UserRto user = await _context.Users.FirstOrDefaultAsync(h => 
-            (h.Login == identity && h.Password == password) || (h.Email == identity && h.Password == password));
+            UserRto user = await _context.Users.FirstOrDefaultAsync(h => h.Login == login && h.Password == password);
 
             if (user == null)
                 throw new BadRequest("Пользователя с такими данными не существует");
 
-            return GenerateToken(user.Login, user.Role);
+            return user.Token;
         }
 
         public Task<bool> IsExist(string email, string login)
