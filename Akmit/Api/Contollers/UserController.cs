@@ -67,15 +67,15 @@ namespace Akmit.Api.Contollers
             }
         }
 
-        [HttpGet("getByToken/{token}")]
-        public async Task<ActionResult<UserInformationShortDto>> GetBytoken(string token)
+        [HttpPost("getByToken")]
+        public async Task<ActionResult<UserInformationDto>> GetByToken(Token token)
         {
             try
             {
-                UserInformationShortDto userInformationShortDto =
-                    _mapper.Map<UserInformationShortDto>(await _userService.GetByToken(token));
+                UserInformationDto userInformationDto =
+                    _mapper.Map<UserInformationDto>(await _userService.GetByToken(token.Body));
 
-                return Ok(userInformationShortDto);
+                return Ok(userInformationDto);
             }
             catch (NotFound)
             {
