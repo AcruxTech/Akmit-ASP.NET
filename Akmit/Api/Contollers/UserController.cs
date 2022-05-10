@@ -1,8 +1,14 @@
 ﻿using Akmit.Api.Models;
 using Akmit.BusinessLogic.Interfaces;
+using Akmit.BusinessLogic.Models;
 using Akmit.Shared.Exceptions;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 namespace Akmit.Api.Contollers
@@ -51,6 +57,22 @@ namespace Akmit.Api.Contollers
             return Ok(await _userService.IsExist(email, login));
         }
 
+        [HttpPost("getByToken")]
+        public async Task<ActionResult<UserInformationDto>> GetByToken(Token token)
+        {
+            try
+            {
+                UserInformationDto userInformationDto =
+                    _mapper.Map<UserInformationDto>(await _userService.GetByToken(token.Body));
+
+                return Ok(userInformationDto);
+            }
+            catch (NotFound)
+            {
+                return NotFound();
+            }
+        }
+
         [HttpGet("getById/{id}")]
         public async Task<ActionResult<UserInformationShortDto>> GetById(int id)
         {
@@ -67,21 +89,39 @@ namespace Akmit.Api.Contollers
             }
         }
 
-        [HttpPost("getByToken")]
-        public async Task<ActionResult<UserInformationDto>> GetByToken(Token token)
+        [HttpGet("getByClassId/{id}")]
+        public async Task<ActionResult<UserInformationDto>> GetByClassId(int id)
         {
             try
             {
-                UserInformationDto userInformationDto =
-                    _mapper.Map<UserInformationDto>(await _userService.GetByToken(token.Body));
+                List<UserInformationShortBlo> usersBlo = await _userService.GetByClassId(id);
+                List<UserInformationShortDto> usersDto = new List<UserInformationShortDto>();
 
-                return Ok(userInformationDto);
+                for (int i = 0; i < usersBlo.Count; i++)
+                {
+                    usersDto.Add(_mapper.Map<UserInformationShortDto>(usersBlo[i]));
+                }
+
+                return Ok(usersDto);
             }
             catch (NotFound)
             {
                 return NotFound();
             }
         }
+
+        [HttpGet("getTokenS3")]
+        public async Task<ActionResult<HttpResponseHeaders>> GetTokenS3(string token)
+        {
+            HttpClient client = new HttpClient();
+            client.DefaultRequestHeaders.Add("X-Auth-User", "209703_Akmit");
+            client.DefaultRequestHeaders.Add("X-Auth-Key", "m[3w#hZdCv");
+            HttpResponseMessage response = await client.GetAsync("https://api.selcdn.ru/auth/v1.0");
+            if (response.StatusCode != HttpStatusCode.NoContent) 
+                return BadRequest("Сервер в настоящий момент недоступен");
+            return response.Headers;
+        }
+
 
         //[HttpPut("change")]
         //public async Task<ActionResult<UserInformationShortDto>> Change(string token)

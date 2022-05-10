@@ -12,6 +12,7 @@ using AutoMapper;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace Akmit.BusinessLogic.Services
 {
@@ -80,6 +81,22 @@ namespace Akmit.BusinessLogic.Services
             if (user == null) throw new NotFound("Пользователя с таким id нет");
 
             return _mapper.Map<UserInformationShortBlo>(user);
+        }
+
+        public async Task<List<UserInformationShortBlo>> GetByClassId(int id)
+        {
+            List<UserRto> usersRto = await _context.Users.Where(h => h.ClassRtoId == id).ToListAsync();
+
+            if (usersRto.Count == 0) throw new NotFound("Пользователей с таким classId нет");
+
+            List<UserInformationShortBlo> usersBlo = new List<UserInformationShortBlo>();
+
+            for (int i = 0; i < usersRto.Count; i++)
+            {
+                usersBlo.Add(_mapper.Map<UserInformationShortBlo>(usersRto[i]));
+            }
+
+            return usersBlo;
         }
 
         public async Task<UserInformationBlo> Change(string token, string newLogin, string newEmail)
