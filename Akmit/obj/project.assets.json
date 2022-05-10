@@ -4769,20 +4769,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Ovchinnikov\\.nuget\\packages\\": {}
+    "C:\\Users\\StudentDev\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\MyDocuments\\Proger\\ASP.NET\\Akmit\\Akmit\\Akmit.csproj",
+      "projectUniqueName": "C:\\Users\\StudentDev\\Documents\\GitHub\\Akmit-ASP.NET\\Akmit\\Akmit.csproj",
       "projectName": "Akmit",
-      "projectPath": "C:\\MyDocuments\\Proger\\ASP.NET\\Akmit\\Akmit\\Akmit.csproj",
-      "packagesPath": "C:\\Users\\Ovchinnikov\\.nuget\\packages\\",
-      "outputPath": "C:\\MyDocuments\\Proger\\ASP.NET\\Akmit\\Akmit\\obj\\",
+      "projectPath": "C:\\Users\\StudentDev\\Documents\\GitHub\\Akmit-ASP.NET\\Akmit\\Akmit.csproj",
+      "packagesPath": "C:\\Users\\StudentDev\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\StudentDev\\Documents\\GitHub\\Akmit-ASP.NET\\Akmit\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Ovchinnikov\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\StudentDev\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -4793,7 +4798,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -4805,7 +4809,6 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
-        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "AutoMapper": {
             "target": "Package",
@@ -4860,7 +4863,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
       }
     }
   }
