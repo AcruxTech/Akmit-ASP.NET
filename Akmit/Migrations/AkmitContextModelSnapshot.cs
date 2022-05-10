@@ -107,6 +107,9 @@ namespace Akmit.Migrations
                     b.Property<string>("Token")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Url")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ClassRtoId");

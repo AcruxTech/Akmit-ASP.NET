@@ -11,7 +11,7 @@ namespace Akmit.BusinessLogic.Interfaces
         Task<UserInformationBlo> GetByToken(string token);
         Task<UserInformationShortBlo> GetById(int id);
         Task<List<UserInformationShortBlo>> GetByClassId(int id);
-        Task<UserInformationBlo> Change(string token, string newLogin, string newEmail);
+        Task<UserInformationBlo> Change(string token, string newLogin = null, string newEmail = null, string newUrl = null );
         Task<UserInformationBlo> ChangePass(string token, string pass, string newPass);
         Task<bool> Delete(string token, string pass);
         Task<bool> IsExist(string email, string login);

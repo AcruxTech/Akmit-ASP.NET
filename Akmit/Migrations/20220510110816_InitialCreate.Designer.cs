@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Akmit.Migrations
 {
     [DbContext(typeof(AkmitContext))]
-    [Migration("20220505160401_InitialCreate")]
+    [Migration("20220510110816_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -107,6 +107,9 @@ namespace Akmit.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Token")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Url")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

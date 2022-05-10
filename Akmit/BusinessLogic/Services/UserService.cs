@@ -99,14 +99,15 @@ namespace Akmit.BusinessLogic.Services
             return usersBlo;
         }
 
-        public async Task<UserInformationBlo> Change(string token, string newLogin, string newEmail)
+        public async Task<UserInformationBlo> Change(string token, string newLogin, string newEmail, string newUrl)
         {
             UserRto user = await _context.Users.FirstOrDefaultAsync(h => h.Token == token);
 
             if (user == null) throw new NotFound("Пользователя с таким токеном нет");
 
-            user.Login = newLogin;
-            user.Email = newEmail;
+            if (newLogin != null) user.Login = newLogin;
+            if (newEmail != null) user.Email = newEmail;
+            if (newUrl != null) user.Url = newUrl;
 
             _context.Users.Update(user);
             await _context.SaveChangesAsync();

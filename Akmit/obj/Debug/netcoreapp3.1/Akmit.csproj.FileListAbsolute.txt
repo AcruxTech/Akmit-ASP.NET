@@ -71,7 +71,6 @@ C:\MyDocuments\Proger\ASP.NET\Akmit\Akmit\obj\Debug\netcoreapp3.1\Akmit.csproj.C
 C:\MyDocuments\Proger\ASP.NET\Akmit\Akmit\obj\Debug\netcoreapp3.1\Akmit.dll
 C:\MyDocuments\Proger\ASP.NET\Akmit\Akmit\obj\Debug\netcoreapp3.1\Akmit.pdb
 C:\MyDocuments\Proger\ASP.NET\Akmit\Akmit\obj\Debug\netcoreapp3.1\Akmit.genruntimeconfig.cache
-C:\MyDocuments\Proger\ASP.NET\Akmit\Akmit\obj\Debug\netcoreapp3.1\Akmit.csproj.AssemblyReference.cache
 C:\Users\StudentDev\Documents\GitHub\Akmit-ASP.NET\Akmit\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\StudentDev\Documents\GitHub\Akmit-ASP.NET\Akmit\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\StudentDev\Documents\GitHub\Akmit-ASP.NET\Akmit\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
@@ -145,3 +144,4 @@ C:\Users\StudentDev\Documents\GitHub\Akmit-ASP.NET\Akmit\obj\Debug\netcoreapp3.1
 C:\Users\StudentDev\Documents\GitHub\Akmit-ASP.NET\Akmit\obj\Debug\netcoreapp3.1\Akmit.dll
 C:\Users\StudentDev\Documents\GitHub\Akmit-ASP.NET\Akmit\obj\Debug\netcoreapp3.1\Akmit.pdb
 C:\Users\StudentDev\Documents\GitHub\Akmit-ASP.NET\Akmit\obj\Debug\netcoreapp3.1\Akmit.genruntimeconfig.cache
+C:\MyDocuments\Proger\ASP.NET\Akmit\Akmit\obj\Debug\netcoreapp3.1\Akmit.csproj.AssemblyReference.cache

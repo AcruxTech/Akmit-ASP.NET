@@ -52,6 +52,7 @@ namespace Akmit.Migrations
                     Password = table.Column<string>(nullable: true),
                     Role = table.Column<string>(nullable: true),
                     Token = table.Column<string>(nullable: true),
+                    Url = table.Column<string>(nullable: true),
                     ClassRtoId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>

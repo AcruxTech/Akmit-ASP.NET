@@ -12,10 +12,12 @@ namespace Akmit.Shared.Automapper
                 .ForMember(x => x.Login, x => x.MapFrom(m => m.Login))
                 .ForMember(x => x.Email, x => x.MapFrom(m => m.Email))
                 .ForMember(x => x.Role, x => x.MapFrom(m => m.Role))
+                .ForMember(x => x.Url, x => x.MapFrom(m => m.Url))
                 .ForMember(x => x.ClassRtoId, x => x.MapFrom(m => m.ClassRtoId));
 
             CreateMap<UserRto, UserInformationShortBlo>()
                 .ForMember(x => x.Login, x => x.MapFrom(m => m.Login))
+                .ForMember(x => x.Url, x => x.MapFrom(m => m.Url))
                 .ForMember(x => x.Role, x => x.MapFrom(m => m.Role));
 
             CreateMap<ClassRto, ClassInformationBlo>()
@@ -29,12 +31,14 @@ namespace Akmit.Shared.Automapper
 
             CreateMap<UserInformationShortBlo, UserInformationShortDto>()
                 .ForMember(x => x.Login, x => x.MapFrom(m => m.Login))
+                .ForMember(x => x.Url, x => x.MapFrom(m => m.Url))
                 .ForMember(x => x.Role, x => x.MapFrom(m => m.Role));
 
             CreateMap<UserInformationBlo, UserInformationDto>()
                 .ForMember(x => x.Login, x => x.MapFrom(m => m.Login))
                 .ForMember(x => x.Email, x => x.MapFrom(m => m.Email))
                 .ForMember(x => x.Role, x => x.MapFrom(m => m.Role))
+                .ForMember(x => x.Url, x => x.MapFrom(m => m.Url))
                 .ForMember(x => x.ClassRtoId, x => x.MapFrom(m => m.ClassRtoId));
         }
     }

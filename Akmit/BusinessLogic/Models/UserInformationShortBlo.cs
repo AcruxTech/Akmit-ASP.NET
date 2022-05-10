@@ -9,5 +9,6 @@ namespace Akmit.BusinessLogic.Models
     {
         public string Login { get; set; }
         public string Role { get; set; }
+        public string Url { get; set; }
     }
 }

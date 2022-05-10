@@ -123,20 +123,18 @@ namespace Akmit.Api.Contollers
         }
 
 
-        //[HttpPut("change")]
-        //public async Task<ActionResult<UserInformationShortDto>> Change(string token)
-        //{
-        //    try
-        //    {
-        //        UserInformationShortDto userInformationShortDto =
-        //            _mapper.Map<UserInformationShortDto>(await _userService.GetByToken(token));
-
-        //        return Ok(userInformationShortDto);
-        //    }
-        //    catch (NotFound)
-        //    {
-        //        return NotFound();
-        //    }
-        //}
+        [HttpPut("change")]
+        public async Task<ActionResult> Change(UserUpdateDto userUpdateDto)
+        {
+            try
+            {
+                await _userService.Change(userUpdateDto.Token, userUpdateDto.newLogin, userUpdateDto.newEmail, userUpdateDto.newUrl);
+                return Ok();
+            }
+            catch(NotFound)
+            {
+                return NotFound();
+            }
+        }
     }
 }
