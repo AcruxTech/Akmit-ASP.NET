@@ -105,9 +105,9 @@ namespace Akmit.BusinessLogic.Services
 
             if (user == null) throw new NotFound("Пользователя с таким токеном нет");
 
-            if (newLogin != null) user.Login = newLogin;
-            if (newEmail != null) user.Email = newEmail;
-            if (newUrl != null) user.Url = newUrl;
+            if (newLogin != "") user.Login = newLogin;
+            if (newEmail != "") user.Email = newEmail;
+            if (newUrl != "") user.Url = newUrl;
 
             _context.Users.Update(user);
             await _context.SaveChangesAsync();
