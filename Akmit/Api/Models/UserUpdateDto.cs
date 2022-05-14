@@ -8,8 +8,8 @@ namespace Akmit.Api.Models
     public class UserUpdateDto
     {
         public string Token { get; set; }
-        public string newEmail { get; set; }
-        public string newLogin { get; set; }
-        public string newUrl { get; set; }
+        public string NewEmail { get; set; }
+        public string NewLogin { get; set; }
+        public string NewUrl { get; set; }
     }
 }

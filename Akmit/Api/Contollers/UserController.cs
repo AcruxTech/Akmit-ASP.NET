@@ -128,7 +128,7 @@ namespace Akmit.Api.Contollers
         {
             try
             {
-                await _userService.Change(userUpdateDto.Token, userUpdateDto.newLogin, userUpdateDto.newEmail, userUpdateDto.newUrl);
+                await _userService.Change(userUpdateDto.Token, userUpdateDto.NewLogin, userUpdateDto.NewEmail, userUpdateDto.NewUrl);
                 return Ok();
             }
             catch(NotFound)

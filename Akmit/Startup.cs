@@ -36,6 +36,7 @@ namespace Akmit
                 p.UseSqlite("Data Source=database.db; Foreign Keys=True"));
 
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IClassService, ClassService>();
 
             services.AddControllers();
 

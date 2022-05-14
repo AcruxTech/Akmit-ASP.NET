@@ -40,6 +40,10 @@ namespace Akmit.Shared.Automapper
                 .ForMember(x => x.Role, x => x.MapFrom(m => m.Role))
                 .ForMember(x => x.Url, x => x.MapFrom(m => m.Url))
                 .ForMember(x => x.ClassRtoId, x => x.MapFrom(m => m.ClassRtoId));
+
+            CreateMap<ClassInformationBlo, ClassInformationDto>()
+                .ForMember(x => x.Title, x => x.MapFrom(m => m.Title))
+                .ForMember(x => x.SecretCode, x => x.MapFrom(m => m.SecretCode));
         }
     }
 }
