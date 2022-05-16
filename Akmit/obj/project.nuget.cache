@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GiukbCuf19eOhlilMUQ1wGmNo6Q+CFGig6zlGHEiCSqpDSucghFvWbdR1oq6XR87wTvFAO67mNImge9I9eEezw==",
+  "dgSpecHash": "zTZ9TiAAXsE1H2u6HGb4S1pWNl++HKmJFaI3cQzAdqbgyVVL6kMbpfJnFZeKzFIuQaHF5NFtKY2+VIDc4yoAgQ==",
   "success": true,
-  "projectFilePath": "C:\\MyDocuments\\Proger\\ASP.NET\\Akmit\\Akmit\\Akmit.csproj",
+  "projectFilePath": "C:\\MyDocuments\\Proger\\ASP.NET\\Akmit-ASP.NET\\Akmit\\Akmit.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ovchinnikov\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\Ovchinnikov\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",

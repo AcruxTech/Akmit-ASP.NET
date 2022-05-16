@@ -2,7 +2,7 @@
 
 namespace Akmit.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitialCrete : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -18,6 +18,25 @@ namespace Akmit.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Classes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Login = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    Password = table.Column<string>(nullable: true),
+                    Role = table.Column<string>(nullable: true),
+                    Token = table.Column<string>(nullable: true),
+                    Url = table.Column<string>(nullable: true),
+                    ClassRtoId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -39,31 +58,6 @@ namespace Akmit.Migrations
                         principalTable: "Classes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Login = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    Password = table.Column<string>(nullable: true),
-                    Role = table.Column<string>(nullable: true),
-                    Token = table.Column<string>(nullable: true),
-                    Url = table.Column<string>(nullable: true),
-                    ClassRtoId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Users_Classes_ClassRtoId",
-                        column: x => x.ClassRtoId,
-                        principalTable: "Classes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -98,11 +92,6 @@ namespace Akmit.Migrations
                 name: "IX_Lessons_DayRtoId",
                 table: "Lessons",
                 column: "DayRtoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Users_ClassRtoId",
-                table: "Users",
-                column: "ClassRtoId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

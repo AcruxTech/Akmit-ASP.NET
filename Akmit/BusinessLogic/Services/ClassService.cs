@@ -36,6 +36,11 @@ namespace Akmit.BusinessLogic.Services
             _context.Classes.Add(newClass);
             await _context.SaveChangesAsync();
 
+            ClassRto fClass = await _context.Classes.FirstOrDefaultAsync(h => h.Title == title);
+            user.ClassRtoId = fClass.Id;
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+
             return _mapper.Map<ClassInformationBlo>(newClass);
         }
 

@@ -112,15 +112,13 @@ namespace Akmit.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClassRtoId");
-
                     b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Akmit.DataAccess.Models.DayRto", b =>
                 {
                     b.HasOne("Akmit.DataAccess.Models.ClassRto", "ClassRto")
-                        .WithMany("Days")
+                        .WithMany()
                         .HasForeignKey("ClassRtoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -133,13 +131,6 @@ namespace Akmit.Migrations
                         .HasForeignKey("DayRtoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Akmit.DataAccess.Models.UserRto", b =>
-                {
-                    b.HasOne("Akmit.DataAccess.Models.ClassRto", "ClassRto")
-                        .WithMany("Users")
-                        .HasForeignKey("ClassRtoId");
                 });
 #pragma warning restore 612, 618
         }

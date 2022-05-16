@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Akmit.Migrations
 {
     [DbContext(typeof(AkmitContext))]
-    [Migration("20220510110816_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20220516175241_InitialCrete")]
+    partial class InitialCrete
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -114,15 +114,13 @@ namespace Akmit.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClassRtoId");
-
                     b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Akmit.DataAccess.Models.DayRto", b =>
                 {
                     b.HasOne("Akmit.DataAccess.Models.ClassRto", "ClassRto")
-                        .WithMany("Days")
+                        .WithMany()
                         .HasForeignKey("ClassRtoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -135,13 +133,6 @@ namespace Akmit.Migrations
                         .HasForeignKey("DayRtoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Akmit.DataAccess.Models.UserRto", b =>
-                {
-                    b.HasOne("Akmit.DataAccess.Models.ClassRto", "ClassRto")
-                        .WithMany("Users")
-                        .HasForeignKey("ClassRtoId");
                 });
 #pragma warning restore 612, 618
         }

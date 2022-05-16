@@ -40,6 +40,7 @@ namespace Akmit.BusinessLogic.Services
                 Email = email,
                 Password = password,
                 Role = Roles.User,
+                Url = "https://722623.selcdn.ru/akmit/default-avatar.png",
                 Token = token,
                 ClassRtoId = null
             };
