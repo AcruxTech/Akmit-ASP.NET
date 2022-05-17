@@ -56,7 +56,6 @@ namespace Akmit.BusinessLogic.Services
             if (fClass == null) throw new BadRequest("Такого класса нет");
 
             user.ClassRtoId = fClass.Id;
-
             _context.Users.Update(user);
             await _context.SaveChangesAsync();
 
