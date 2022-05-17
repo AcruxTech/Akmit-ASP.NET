@@ -20,6 +20,10 @@ namespace Akmit.BusinessLogic.Services
             _context = context;
             _mapper = mapper;
         }
+        public async Task<ClassInformationBlo> Get(int id)
+        {
+            return _mapper.Map<ClassInformationBlo>(await _context.Classes.FirstOrDefaultAsync(h => h.Id == id));
+        }
 
         public async Task<ClassInformationBlo> Create(string token, string title)
         {

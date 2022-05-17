@@ -8,7 +8,7 @@ namespace Akmit.Api.Models
     public class ClassIdentityDto
     {
         public string Title { get; set; }
-        public int? SecretCode { get; set; }
-        public string? Token { get; set; }
+        public int SecretCode { get; set; }
+        public string Token { get; set; }
     }
 }
