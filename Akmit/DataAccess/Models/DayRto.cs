@@ -8,8 +8,6 @@ namespace Akmit.DataAccess.Models
         public string Title { get; set; }
         public string Pavilion { get; set; }
 
-        public List<LessonRto> Lessons { get; set; }
         public int ClassRtoId { get; set; }
-        public ClassRto ClassRto { get; set; }
     }
 }

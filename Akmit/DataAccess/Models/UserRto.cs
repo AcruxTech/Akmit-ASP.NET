@@ -11,6 +11,5 @@
         public string Url { get; set; }
 
         public int? ClassRtoId { get; set; }
-        //public ClassRto? ClassRto { get; set; }
     }
 }

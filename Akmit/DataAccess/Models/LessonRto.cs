@@ -8,7 +8,6 @@
         public string Homework { get; set; }
         public int Cabinet { get; set; }
         
-        public DayRto DayRto { get; set; }
         public int DayRtoId { get; set; }
     }
 }
