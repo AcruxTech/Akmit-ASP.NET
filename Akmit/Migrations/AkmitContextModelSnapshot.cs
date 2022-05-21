@@ -50,8 +50,6 @@ namespace Akmit.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClassRtoId");
-
                     b.ToTable("Days");
                 });
 
@@ -77,8 +75,6 @@ namespace Akmit.Migrations
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DayRtoId");
 
                     b.ToTable("Lessons");
                 });
@@ -113,24 +109,6 @@ namespace Akmit.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Akmit.DataAccess.Models.DayRto", b =>
-                {
-                    b.HasOne("Akmit.DataAccess.Models.ClassRto", "ClassRto")
-                        .WithMany()
-                        .HasForeignKey("ClassRtoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Akmit.DataAccess.Models.LessonRto", b =>
-                {
-                    b.HasOne("Akmit.DataAccess.Models.DayRto", "DayRto")
-                        .WithMany("Lessons")
-                        .HasForeignKey("DayRtoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

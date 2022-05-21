@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Akmit.Migrations
 {
     [DbContext(typeof(AkmitContext))]
-    [Migration("20220516175241_InitialCrete")]
-    partial class InitialCrete
+    [Migration("20220521105025_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -52,8 +52,6 @@ namespace Akmit.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClassRtoId");
-
                     b.ToTable("Days");
                 });
 
@@ -79,8 +77,6 @@ namespace Akmit.Migrations
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DayRtoId");
 
                     b.ToTable("Lessons");
                 });
@@ -115,24 +111,6 @@ namespace Akmit.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Akmit.DataAccess.Models.DayRto", b =>
-                {
-                    b.HasOne("Akmit.DataAccess.Models.ClassRto", "ClassRto")
-                        .WithMany()
-                        .HasForeignKey("ClassRtoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Akmit.DataAccess.Models.LessonRto", b =>
-                {
-                    b.HasOne("Akmit.DataAccess.Models.DayRto", "DayRto")
-                        .WithMany("Lessons")
-                        .HasForeignKey("DayRtoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

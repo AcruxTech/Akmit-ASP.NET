@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 
 namespace Akmit.Api.Contollers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class DayController : ControllerBase
     {
         private readonly IDayService _dayService;
@@ -35,12 +37,12 @@ namespace Akmit.Api.Contollers
             }
         }
 
-        [HttpGet("getAll/{token}")]
-        public async Task<ActionResult<List<DayInformationDto>>> GetAll(string token)
+        [HttpPost("get_all")]
+        public async Task<ActionResult<List<DayInformationDto>>> GetAll(Token token)
         {
             try
             {
-                List<DayInformationBlo> daysBlo = await _dayService.GetAll(token);
+                List<DayInformationBlo> daysBlo = await _dayService.GetAll(token.Body);
                 List<DayInformationDto> days = new List<DayInformationDto>();
 
                 for (int i = 0; i < daysBlo.Count; i++)
@@ -49,6 +51,10 @@ namespace Akmit.Api.Contollers
                 }
 
                 return days;
+            }
+            catch (NotFound e)
+            {
+                return NotFound(e);
             }
             catch (BadRequest e)
             {

@@ -67,16 +67,15 @@ namespace Akmit.BusinessLogic.Services
         public async Task<List<DayInformationBlo>> GetAll(string token)
         {
             UserRto user = await _context.Users.FirstOrDefaultAsync(h => h.Token == token);
-
-            if (user == null || user.ClassRtoId == 0) throw new BadRequest("Пользователя с таким токеном нет");
+            if (user == null) throw new BadRequest("Пользователя с таким токеном нет");
 
             ClassRto fClass = await _context.Classes.FirstOrDefaultAsync(h => h.Id == user.ClassRtoId);
-
             if (fClass == null) throw new BadRequest("Пользователь не состоит в классе");
 
             List<DayRto> daysRto = await _context.Days.Where(h => h.ClassRtoId == fClass.Id).ToListAsync();
-            List<DayInformationBlo> days = new List<DayInformationBlo>();
+            if (daysRto.Count == 0) throw new NotFound("Дней нет");
 
+            List<DayInformationBlo> days = new List<DayInformationBlo>();
             for (int i = 0; i < daysRto.Count; i++)
             {
                 days.Append(_mapper.Map<DayInformationBlo>(daysRto[i]));
