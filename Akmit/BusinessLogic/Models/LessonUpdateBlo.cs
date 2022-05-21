@@ -7,9 +7,9 @@ namespace Akmit.BusinessLogic.Models
 {
     public class LessonUpdateBlo
     {
-        public int Number { get; set; }
-        public string Lesson { get; set; }
-        public string Homework { get; set; }
-        public int Cabinet { get; set; }
+        public int NewNumber { get; set; }
+        public string NewLesson { get; set; }
+        public string NewHomework { get; set; }
+        public int NewCabinet { get; set; }
     }
 }

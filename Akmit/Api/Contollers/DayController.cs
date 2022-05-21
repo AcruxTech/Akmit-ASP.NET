@@ -16,20 +16,19 @@ namespace Akmit.Api.Contollers
     public class DayController : ControllerBase
     {
         private readonly IDayService _dayService;
-        private readonly IMapper _mapper;
 
-        public DayController(IDayService dayService, IMapper mapper)
+        public DayController(IDayService dayService)
         {
             _dayService = dayService;
-            _mapper = mapper;
         }
 
         [HttpPost("add")]
-        public async Task<ActionResult<DayInformationDto>> Add(DayIdentityDto dayIdentityDto)
+        public async Task<ActionResult> Add(DayIdentityDto dayIdentityDto)
         {
             try
             {
-                return _mapper.Map<DayInformationDto>(await _dayService.Add(dayIdentityDto.Token, dayIdentityDto.Title, dayIdentityDto.Pavilion));
+                await _dayService.Add(dayIdentityDto.Token, dayIdentityDto.Title, dayIdentityDto.Pavilion);
+                return Ok();
             }
             catch (BadRequest e)
             {
@@ -37,20 +36,12 @@ namespace Akmit.Api.Contollers
             }
         }
 
-        [HttpPost("get_all")]
-        public async Task<ActionResult<List<DayInformationDto>>> GetAll(Token token)
+        [HttpGet("get_all/{classRtoId}")]
+        public async Task<ActionResult<List<DayInformationBlo>>> GetAll(int classRtoId)
         {
             try
             {
-                List<DayInformationBlo> daysBlo = await _dayService.GetAll(token.Body);
-                List<DayInformationDto> days = new List<DayInformationDto>();
-
-                for (int i = 0; i < daysBlo.Count; i++)
-                {
-                    days.Append(_mapper.Map<DayInformationDto>(daysBlo[i]));
-                }
-
-                return days;
+                return await _dayService.GetAll(classRtoId);
             }
             catch (NotFound e)
             {
@@ -80,7 +71,7 @@ namespace Akmit.Api.Contollers
         {
             try
             {
-                return await _dayService.Delete(dayDeleteDto.Token, dayDeleteDto.Title);
+                return await _dayService.Delete(dayDeleteDto.ClassRtoId, dayDeleteDto.Title);
             }
             catch (BadRequest e)
             {

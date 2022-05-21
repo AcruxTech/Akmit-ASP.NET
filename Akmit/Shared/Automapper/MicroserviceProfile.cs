@@ -52,6 +52,12 @@ namespace Akmit.Shared.Automapper
             CreateMap<DayInformationBlo, DayInformationDto>()
                 .ForMember(x => x.Title, x => x.MapFrom(m => m.Title))
                 .ForMember(x => x.Pavilion, x => x.MapFrom(m => m.Pavilion));
+
+            CreateMap<LessonRto, LessonInformationBlo>()
+                .ForMember(x => x.Number, x => x.MapFrom(m => m.Number))
+                .ForMember(x => x.Lesson, x => x.MapFrom(m => m.Lesson))
+                .ForMember(x => x.Homework, x => x.MapFrom(m => m.Homework))
+                .ForMember(x => x.Cabinet, x => x.MapFrom(m => m.Cabinet));
         }
     }
 }

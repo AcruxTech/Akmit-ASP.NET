@@ -46,17 +46,10 @@ namespace Akmit.BusinessLogic.Services
             return true;
         }
 
-        public async Task<bool> Delete(string token, string title)
+        public async Task<bool> Delete(int classRtoId, string title)
         {
-            UserRto user = await _context.Users.FirstOrDefaultAsync(h => h.Token == token);
-
-            if (user == null || user.ClassRtoId == 0) throw new BadRequest("Пользователя с таким токеном нет");
-
-            ClassRto fClass = await _context.Classes.FirstOrDefaultAsync(h => h.Id == user.ClassRtoId);
-
-            if (fClass == null) throw new BadRequest("Пользователь не состоит в классе");
-
-            DayRto day = await _context.Days.FirstOrDefaultAsync(h => h.Id == user.ClassRtoId && h.Title == title);
+            DayRto day = await _context.Days.FirstOrDefaultAsync(h => h.ClassRtoId == classRtoId && h.Title == title);
+            if (day == null) throw new NotFound("Дня с таким названием нет");
 
             _context.Days.Remove(day);
             await _context.SaveChangesAsync();
@@ -64,21 +57,15 @@ namespace Akmit.BusinessLogic.Services
             return true;
         }
 
-        public async Task<List<DayInformationBlo>> GetAll(string token)
+        public async Task<List<DayInformationBlo>> GetAll(int classRtoId)
         {
-            UserRto user = await _context.Users.FirstOrDefaultAsync(h => h.Token == token);
-            if (user == null) throw new BadRequest("Пользователя с таким токеном нет");
-
-            ClassRto fClass = await _context.Classes.FirstOrDefaultAsync(h => h.Id == user.ClassRtoId);
-            if (fClass == null) throw new BadRequest("Пользователь не состоит в классе");
-
-            List<DayRto> daysRto = await _context.Days.Where(h => h.ClassRtoId == fClass.Id).ToListAsync();
+            List<DayRto> daysRto = await _context.Days.Where(h => h.ClassRtoId == classRtoId).ToListAsync();
             if (daysRto.Count == 0) throw new NotFound("Дней нет");
 
             List<DayInformationBlo> days = new List<DayInformationBlo>();
             for (int i = 0; i < daysRto.Count; i++)
             {
-                days.Append(_mapper.Map<DayInformationBlo>(daysRto[i]));
+                days.Add(_mapper.Map<DayInformationBlo>(daysRto[i]));
             }
 
             return days;

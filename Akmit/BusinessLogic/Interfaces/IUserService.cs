@@ -6,6 +6,7 @@ namespace Akmit.BusinessLogic.Interfaces
 {
     public interface IUserService
     {
+        /* swagger - https://coderjony.com/blogs/adding-swagger-to-aspnet-core-31-web-api/ */
         /// <summary>
         /// Регистрирует нового пользователя по логину, почте и паролю 
         /// </summary>

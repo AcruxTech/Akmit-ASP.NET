@@ -6,11 +6,9 @@ namespace Akmit.BusinessLogic.Interfaces
 {
     public interface ILessonService
     {
-        Task<bool> Add(string token, LessonInformationBlo lessonInformationBlo);
-        Task<LessonInformationBlo> Get(string token, string dayTitle, int number);
-        Task<List<LessonInformationBlo>> GetDayLessons(string token, string dayTitle);
-        // Task<List<LessonInformationBlo>> GetAll(string token);
-        Task<bool> Update(string token, LessonUpdateBlo lessonUpdateBlo);
-        Task<bool> Delete(string token, string dayTitle, int number);
+        Task<bool> Add(int classRtoId, string dayTitle, LessonInformationBlo lessonInformationBlo);
+        Task<List<LessonInformationBlo>> GetDayLessons(int classRtoId, string dayTitle);
+        Task<bool> Update(int classRtoId, string dayTitle, int number, LessonUpdateBlo lessonUpdateBlo);
+        Task<bool> Delete(int classRtoId, string dayTitle, int number);
     }
 }

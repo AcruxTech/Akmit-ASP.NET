@@ -5,9 +5,7 @@ using System.Threading.Tasks;
 
 namespace Akmit.Api.Models
 {
-    public class DayDeleteDto
+    public class LessonIdentityDto
     {
-        public int ClassRtoId { get; set; }
-        public string Title { get; set; }
     }
 }
