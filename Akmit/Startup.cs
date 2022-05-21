@@ -14,6 +14,10 @@ using Microsoft.Extensions.Configuration;
 using Akmit.DataAccess.Interfaces;
 using Akmit.BusinessLogic.Interfaces;
 using Akmit.BusinessLogic.Services;
+using Microsoft.OpenApi.Models;
+using System;
+using System.Reflection;
+using System.IO;
 
 namespace Akmit
 {
@@ -41,6 +45,21 @@ namespace Akmit
             services.AddScoped<ILessonService, LessonService>();
 
             services.AddControllers();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Akmit API",
+                    Version = "v1",
+                    Description = "Описание akmit api",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "AcruxTech",
+                        Email = "admin@akmit.ru",
+                        Url = new Uri("https://akmit.ru/"),
+                    },
+                });
+            });
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(options =>
@@ -69,6 +88,13 @@ namespace Akmit
             }
 
             app.UseRouting();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Akmit API V1");
+                c.RoutePrefix = string.Empty;
+            });
 
             app.UseCors(option => option.WithOrigins("http://localhost:8080", "https://akmit.ru")
                                         .AllowAnyMethod()

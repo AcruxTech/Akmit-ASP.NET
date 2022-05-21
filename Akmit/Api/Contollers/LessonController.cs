@@ -38,5 +38,55 @@ namespace Akmit.Api.Contollers
                 return BadRequest(e);
             }
         }
+
+        [HttpDelete("delete/{classRtoId}/{dayTitle}/{number}")]
+        public async Task<ActionResult> Delete(int classRtoId, string dayTitle, int number)
+        {
+            try
+            {
+                await _lessonService.Delete(classRtoId, dayTitle, number);
+                return Ok();
+            }
+            catch (BadRequest e)
+            {
+                return BadRequest(e);
+            }
+        }
+
+        [HttpGet("{classRtoId}/{dayTitle}")]
+        public async Task<ActionResult<List<LessonInformationDto>>> GetDayLessons(int classRtoId, string dayTitle)
+        {
+            try
+            {
+                List<LessonInformationDto> lessons = new List<LessonInformationDto>();
+                List<LessonInformationBlo> lessonsBlo = await _lessonService.GetDayLessons(classRtoId, dayTitle);
+
+                for (int i = 0; i < lessonsBlo.Count; i++)
+                {
+                    lessons.Add(_mapper.Map<LessonInformationDto>(lessonsBlo[i]));
+                }
+
+                return lessons;
+            }
+            catch (BadRequest e)
+            {
+                return BadRequest(e);
+            }
+        }
+
+        [HttpPut()]
+        public async Task<ActionResult> Update(LessonUpdateDto lessonUpdateDto)
+        {
+            try
+            {
+                await _lessonService.Update(lessonUpdateDto.ClassRtoId, lessonUpdateDto.DayTitle, lessonUpdateDto.NewNumber,
+                    _mapper.Map<LessonUpdateBlo>(lessonUpdateDto));
+                return Ok();
+            }
+            catch (BadRequest e)
+            {
+                return BadRequest(e);
+            }
+        }
     }
 }

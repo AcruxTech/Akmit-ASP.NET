@@ -25,7 +25,11 @@ namespace Akmit.Api.Contollers
             _userService = userService;
             _mapper = mapper;
         }
-
+        /// <summary>
+        /// Создает нового пользователя
+        /// </summary>
+        /// <param name="userIdentityDto"></param>
+        /// <returns>Возвращает токен созданного пользователя</returns>
         [HttpPost("register")]
         public async Task<ActionResult<string>> Register(UserIdentityDto userIdentityDto) 
         {
