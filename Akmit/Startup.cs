@@ -37,6 +37,8 @@ namespace Akmit
 
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IClassService, ClassService>();
+            services.AddScoped<IDayService, DayService>();
+            services.AddScoped<ILessonService, LessonService>();
 
             services.AddControllers();
 
