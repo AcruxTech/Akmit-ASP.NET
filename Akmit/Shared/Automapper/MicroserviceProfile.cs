@@ -58,6 +58,12 @@ namespace Akmit.Shared.Automapper
                 .ForMember(x => x.Lesson, x => x.MapFrom(m => m.Lesson))
                 .ForMember(x => x.Homework, x => x.MapFrom(m => m.Homework))
                 .ForMember(x => x.Cabinet, x => x.MapFrom(m => m.Cabinet));
+
+            CreateMap<LessonIdentityDto, LessonInformationBlo>()
+                .ForMember(x => x.Number, x => x.MapFrom(m => m.Number))
+                .ForMember(x => x.Lesson, x => x.MapFrom(m => m.Lesson))
+                .ForMember(x => x.Homework, x => x.MapFrom(m => m.Homework))
+                .ForMember(x => x.Cabinet, x => x.MapFrom(m => m.Cabinet));
         }
     }
 }
