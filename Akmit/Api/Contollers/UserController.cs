@@ -3,6 +3,7 @@ using Akmit.BusinessLogic.Interfaces;
 using Akmit.BusinessLogic.Models;
 using Akmit.Shared.Exceptions;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,8 +29,11 @@ namespace Akmit.Api.Contollers
         /// <summary>
         /// Создает нового пользователя
         /// </summary>
-        /// <param name="userIdentityDto"></param>
+        /// <param name="userIdentityDto">Информация о пользователе</param>
+        /// <remarks>Возможные статус-коды: 200, 400</remarks>
         /// <returns>Возвращает токен созданного пользователя</returns>
+        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
         [HttpPost("register")]
         public async Task<ActionResult<string>> Register(UserIdentityDto userIdentityDto) 
         {

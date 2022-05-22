@@ -224,3 +224,4 @@ C:\MyDocuments\Proger\ASP.NET\Akmit-ASP.NET\Akmit\bin\Debug\netcoreapp3.1\Swashb
 C:\MyDocuments\Proger\ASP.NET\Akmit-ASP.NET\Akmit\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\MyDocuments\Proger\ASP.NET\Akmit-ASP.NET\Akmit\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\MyDocuments\Proger\ASP.NET\Akmit-ASP.NET\Akmit\obj\Debug\netcoreapp3.1\Akmit.MvcApplicationPartsAssemblyInfo.cs
+C:\MyDocuments\Proger\ASP.NET\Akmit-ASP.NET\Akmit\bin\Debug\netcoreapp3.1\Akmit.xml

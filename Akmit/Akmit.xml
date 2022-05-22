@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Akmit</name>
+    </assembly>
+    <members>
+        <member name="M:Akmit.Api.Contollers.UserController.Register(Akmit.Api.Models.UserIdentityDto)">
+            <summary>
+            Создает нового пользователя
+            </summary>
+            <param name="userIdentityDto">Информация о пользователе</param>
+            <remarks>Возможные статус-коды: 200, 400</remarks>
+            <returns>Возвращает токен созданного пользователя</returns>
+        </member>
+    </members>
+</doc>

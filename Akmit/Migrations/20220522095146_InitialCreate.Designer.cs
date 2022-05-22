@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Akmit.Migrations
 {
     [DbContext(typeof(AkmitContext))]
-    [Migration("20220521180833_InitialCreate")]
+    [Migration("20220522095146_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
