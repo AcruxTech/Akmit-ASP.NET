@@ -72,17 +72,10 @@ namespace Akmit.BusinessLogic.Services
             return days;
         }
 
-        public async Task<bool> Update(string token, string title, string newTitle, string newPavilion)
+        public async Task<bool> Update(int classRtoId, string dayTitle, string newTitle, string newPavilion)
         {
-            UserRto user = await _context.Users.FirstOrDefaultAsync(h => h.Token == token);
-
-            if (user == null || user.ClassRtoId == 0) throw new BadRequest("Пользователя с таким токеном нет");
-
-            ClassRto fClass = await _context.Classes.FirstOrDefaultAsync(h => h.Id == user.ClassRtoId);
-
-            if (fClass == null) throw new BadRequest("Пользователь не состоит в классе");
-
-            DayRto day = await _context.Days.FirstOrDefaultAsync(h => h.Id == user.ClassRtoId && h.Title == title);
+            DayRto day = await _context.Days.FirstOrDefaultAsync(h => h.Id == classRtoId && h.Title == dayTitle);
+            if (day == null) throw new BadRequest("Дня не найдено");
 
             day.Title = newTitle;
             day.Pavilion = newPavilion;

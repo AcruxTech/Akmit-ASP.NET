@@ -42,12 +42,12 @@ namespace Akmit.Api.Contollers
             return await _dayService.GetAll(classRtoId);
         }
 
-        [HttpPut()]
-        public async Task<ActionResult<bool>> Update(DayUpdateDto dayUpdateDto)
+        [HttpPut("{classRtoId}/{title}")]
+        public async Task<ActionResult<bool>> Update(int classRtoId, string title, [FromBody] DayUpdateDto dayUpdateDto)
         {
             try
             {
-                return await _dayService.Update(dayUpdateDto.Token, dayUpdateDto.Title, dayUpdateDto.NewTitle, dayUpdateDto.NewPavilion);
+                return await _dayService.Update(classRtoId, title, dayUpdateDto.NewTitle, dayUpdateDto.NewPavilion);
             }
             catch (BadRequest e)
             {

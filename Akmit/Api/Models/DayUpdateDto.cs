@@ -7,8 +7,6 @@ namespace Akmit.Api.Models
 {
     public class DayUpdateDto
     {
-        public string Token { get; set; }
-        public string Title { get; set; }
         public string NewTitle { get; set; }
         public string NewPavilion { get; set; }
     }

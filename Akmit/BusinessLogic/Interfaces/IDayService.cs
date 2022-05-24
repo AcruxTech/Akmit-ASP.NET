@@ -8,7 +8,7 @@ namespace Akmit.BusinessLogic.Interfaces
     {
         Task<bool> Add(string token, string title, string pavilion);
         Task<List<DayInformationBlo>> GetAll(int classRtoId);
-        Task<bool> Update(string token, string title, string newTitle, string newPavilion);
+        Task<bool> Update(int classRtoId, string dayTitle, string newTitle, string newPavilion);
         Task<bool> Delete(int classRtoId, string title);
     }
 }
