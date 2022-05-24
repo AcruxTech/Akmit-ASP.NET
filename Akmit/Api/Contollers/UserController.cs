@@ -30,8 +30,7 @@ namespace Akmit.Api.Contollers
         /// Создает нового пользователя
         /// </summary>
         /// <param name="userIdentityDto">Информация о пользователе</param>
-        /// <remarks>Возможные статус-коды: 200, 400</remarks>
-        /// <returns>Возвращает токен созданного пользователя</returns>
+        /// <returns>Токен</returns>
         [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
         [HttpPost("register")]
@@ -40,12 +39,19 @@ namespace Akmit.Api.Contollers
             try {
                 return await _userService.Register(userIdentityDto.Email, userIdentityDto.Login, userIdentityDto.Password);
             }
-            catch (BadRequest)
+            catch (BadRequest e)
             {
-                return BadRequest();
+                return BadRequest(e);
             }
         }
 
+        /// <summary>
+        /// Авторизует пользователя по логину и паролю
+        /// </summary>
+        /// <param name="userIdentityDto">Информация о пользователе</param>
+        /// <returns>Токен</returns>
+        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
         [HttpPost("auth")]
         public async Task<ActionResult<string>> Login(UserIdentityDto userIdentityDto)
         {
@@ -53,18 +59,32 @@ namespace Akmit.Api.Contollers
             {
                 return await _userService.Auth(userIdentityDto.Login, userIdentityDto.Password);
             }
-            catch (BadRequest)
+            catch (BadRequest e)
             {
-                return BadRequest();
+                return BadRequest(e);
             }
         }
 
+        /// <summary>
+        /// Проверяет, существует ли пользователь с данной почтой и логином
+        /// </summary>
+        /// <param name="email">Почта</param>
+        /// <param name="login">Логин</param>
+        /// <returns>true или false</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet("isExist/{email}/{login}")]
         public async Task<ActionResult> IsExist(string email, string login)
         {
             return Ok(await _userService.IsExist(email, login));
         }
 
+        /// <summary>
+        /// Возвращает полную информацию о пользователя по токену
+        /// </summary>
+        /// <param name="token">Токен</param>
+        /// <returns>Полная информация о пользователе</returns>
+        [ProducesResponseType(typeof(UserInformationDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
         [HttpPost("getByToken")]
         public async Task<ActionResult<UserInformationDto>> GetByToken(Token token)
         {
@@ -75,12 +95,19 @@ namespace Akmit.Api.Contollers
 
                 return Ok(userInformationDto);
             }
-            catch (NotFound)
+            catch (NotFound e)
             {
-                return NotFound();
+                return NotFound(e);
             }
         }
 
+        /// <summary>
+        /// Получает краткую информацию о пользователе по ID
+        /// </summary>
+        /// <param name="id">ID пользователя</param>
+        /// <returns>Краткая информация о пользователе</returns>
+        [ProducesResponseType(typeof(UserInformationShortDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
         [HttpGet("getById/{id}")]
         public async Task<ActionResult<UserInformationShortDto>> GetById(int id)
         {
@@ -91,14 +118,21 @@ namespace Akmit.Api.Contollers
 
                 return Ok(userInformationShortDto);
             }
-            catch (NotFound)
+            catch (NotFound e)
             {
-                return NotFound();
+                return NotFound(e);
             }
         }
 
+        /// <summary>
+        /// Возвращает краткую информацию о пользователях, состоящих в классе с данным ClassID
+        /// </summary>
+        /// <param name="id">ID класса</param>
+        /// <returns>Список пользователей, сотсоящих в классе с данным ClassID</returns>
+        [ProducesResponseType(typeof(List<UserInformationShortDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
         [HttpGet("getByClassId/{id}")]
-        public async Task<ActionResult<UserInformationDto>> GetByClassId(int id)
+        public async Task<ActionResult<List<UserInformationShortDto>>> GetByClassId(int id)
         {
             try
             {
@@ -112,14 +146,19 @@ namespace Akmit.Api.Contollers
 
                 return Ok(usersDto);
             }
-            catch (NotFound)
+            catch (NotFound e)
             {
-                return NotFound();
+                return NotFound(e);
             }
         }
 
+        /// <summary>
+        /// Запрашивает токен S3-API для дальнейшей работы с изображением профиля 
+        /// </summary>
+        /// <returns>Токен S3-API</returns>
+        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
         [HttpGet("getTokenS3")]
-        public async Task<ActionResult<HttpResponseHeaders>> GetTokenS3(string token)
+        public async Task<ActionResult<string>> GetTokenS3()
         {
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Add("X-Auth-User", "209703_Akmit");
@@ -127,10 +166,16 @@ namespace Akmit.Api.Contollers
             HttpResponseMessage response = await client.GetAsync("https://api.selcdn.ru/auth/v1.0");
             if (response.StatusCode != HttpStatusCode.NoContent) 
                 return BadRequest("Сервер в настоящий момент недоступен");
-            return response.Headers;
+            return Ok(response.Headers);
         }
 
-
+        /// <summary>
+        /// Изменяет пользователя по новым данным
+        /// </summary>
+        /// <param name="userUpdateDto">Информация о пользователе для обновления</param>
+        /// <returns>Статус-код 200</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
         [HttpPut("change")]
         public async Task<ActionResult> Change(UserUpdateDto userUpdateDto)
         {
@@ -139,9 +184,9 @@ namespace Akmit.Api.Contollers
                 await _userService.Change(userUpdateDto.Token, userUpdateDto.NewLogin, userUpdateDto.NewEmail, userUpdateDto.NewUrl);
                 return Ok();
             }
-            catch(NotFound)
+            catch(NotFound e)
             {
-                return NotFound();
+                return NotFound(e);
             }
         }
     }

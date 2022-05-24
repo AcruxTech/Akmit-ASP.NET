@@ -60,12 +60,13 @@ namespace Akmit.BusinessLogic.Services
         public async Task<List<DayInformationBlo>> GetAll(int classRtoId)
         {
             List<DayRto> daysRto = await _context.Days.Where(h => h.ClassRtoId == classRtoId).ToListAsync();
-            if (daysRto.Count == 0) throw new NotFound("Дней нет");
+            if (daysRto.Count == 0) return null;
 
             List<DayInformationBlo> days = new List<DayInformationBlo>();
             for (int i = 0; i < daysRto.Count; i++)
             {
-                days.Add(_mapper.Map<DayInformationBlo>(daysRto[i]));
+                DayInformationBlo day = _mapper.Map<DayInformationBlo>(daysRto[i]);
+                days.Add(day);
             }
 
             return days;

@@ -60,6 +60,7 @@ namespace Akmit.Api.Contollers
             {
                 List<LessonInformationDto> lessons = new List<LessonInformationDto>();
                 List<LessonInformationBlo> lessonsBlo = await _lessonService.GetDayLessons(classRtoId, dayTitle);
+                if (lessonsBlo == null) return null; 
 
                 for (int i = 0; i < lessonsBlo.Count; i++)
                 {

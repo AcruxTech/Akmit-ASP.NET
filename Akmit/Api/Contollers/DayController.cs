@@ -39,18 +39,7 @@ namespace Akmit.Api.Contollers
         [HttpGet("get_all/{classRtoId}")]
         public async Task<ActionResult<List<DayInformationBlo>>> GetAll(int classRtoId)
         {
-            try
-            {
-                return await _dayService.GetAll(classRtoId);
-            }
-            catch (NotFound e)
-            {
-                return NotFound(e);
-            }
-            catch (BadRequest e)
-            {
-                return BadRequest(e);
-            }
+            return await _dayService.GetAll(classRtoId);
         }
 
         [HttpPut()]

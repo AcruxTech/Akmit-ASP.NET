@@ -9,8 +9,56 @@
             Создает нового пользователя
             </summary>
             <param name="userIdentityDto">Информация о пользователе</param>
-            <remarks>Возможные статус-коды: 200, 400</remarks>
-            <returns>Возвращает токен созданного пользователя</returns>
+            <returns>Токен</returns>
+        </member>
+        <member name="M:Akmit.Api.Contollers.UserController.Login(Akmit.Api.Models.UserIdentityDto)">
+            <summary>
+            Авторизует пользователя по логину и паролю
+            </summary>
+            <param name="userIdentityDto">Информация о пользователе</param>
+            <returns>Токен</returns>
+        </member>
+        <member name="M:Akmit.Api.Contollers.UserController.IsExist(System.String,System.String)">
+            <summary>
+            Проверяет, существует ли пользователь с данной почтой и логином
+            </summary>
+            <param name="email">Почта</param>
+            <param name="login">Логин</param>
+            <returns>true или false</returns>
+        </member>
+        <member name="M:Akmit.Api.Contollers.UserController.GetByToken(Akmit.Api.Models.Token)">
+            <summary>
+            Возвращает полную информацию о пользователя по токену
+            </summary>
+            <param name="token">Токен</param>
+            <returns>Полная информация о пользователе</returns>
+        </member>
+        <member name="M:Akmit.Api.Contollers.UserController.GetById(System.Int32)">
+            <summary>
+            Получает краткую информацию о пользователе по ID
+            </summary>
+            <param name="id">ID пользователя</param>
+            <returns>Краткая информация о пользователе</returns>
+        </member>
+        <member name="M:Akmit.Api.Contollers.UserController.GetByClassId(System.Int32)">
+            <summary>
+            Возвращает краткую информацию о пользователях, состоящих в классе с данным ClassID
+            </summary>
+            <param name="id">ID класса</param>
+            <returns>Список пользователей, сотсоящих в классе с данным ClassID</returns>
+        </member>
+        <member name="M:Akmit.Api.Contollers.UserController.GetTokenS3">
+            <summary>
+            Запрашивает токен S3-API для дальнейшей работы с изображением профиля 
+            </summary>
+            <returns>Токен S3-API</returns>
+        </member>
+        <member name="M:Akmit.Api.Contollers.UserController.Change(Akmit.Api.Models.UserUpdateDto)">
+            <summary>
+            Изменяет пользователя по новым данным
+            </summary>
+            <param name="userUpdateDto">Информация о пользователе для обновления</param>
+            <returns>Статус-код 200</returns>
         </member>
     </members>
 </doc>
