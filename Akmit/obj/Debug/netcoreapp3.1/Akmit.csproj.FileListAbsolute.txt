@@ -218,10 +218,16 @@ C:\MyDocuments\Proger\ASP.NET\Akmit-ASP.NET\Akmit\obj\Debug\netcoreapp3.1\Akmit.
 C:\MyDocuments\Proger\ASP.NET\Akmit-ASP.NET\Akmit\obj\Debug\netcoreapp3.1\Akmit.dll
 C:\MyDocuments\Proger\ASP.NET\Akmit-ASP.NET\Akmit\obj\Debug\netcoreapp3.1\Akmit.pdb
 C:\MyDocuments\Proger\ASP.NET\Akmit-ASP.NET\Akmit\obj\Debug\netcoreapp3.1\Akmit.genruntimeconfig.cache
-C:\Users\StudentDev\Documents\GitHub\Akmit-ASP.NET\Akmit\obj\Debug\netcoreapp3.1\scopedcss\bundle\Akmit.styles.css
 C:\MyDocuments\Proger\ASP.NET\Akmit-ASP.NET\Akmit\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
 C:\MyDocuments\Proger\ASP.NET\Akmit-ASP.NET\Akmit\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
 C:\MyDocuments\Proger\ASP.NET\Akmit-ASP.NET\Akmit\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\MyDocuments\Proger\ASP.NET\Akmit-ASP.NET\Akmit\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\MyDocuments\Proger\ASP.NET\Akmit-ASP.NET\Akmit\obj\Debug\netcoreapp3.1\Akmit.MvcApplicationPartsAssemblyInfo.cs
 C:\MyDocuments\Proger\ASP.NET\Akmit-ASP.NET\Akmit\bin\Debug\netcoreapp3.1\Akmit.xml
+C:\Users\StudentDev\Documents\GitHub\Akmit-ASP.NET\Akmit\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+C:\Users\StudentDev\Documents\GitHub\Akmit-ASP.NET\Akmit\bin\Debug\netcoreapp3.1\Akmit.xml
+C:\Users\StudentDev\Documents\GitHub\Akmit-ASP.NET\Akmit\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+C:\Users\StudentDev\Documents\GitHub\Akmit-ASP.NET\Akmit\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\StudentDev\Documents\GitHub\Akmit-ASP.NET\Akmit\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\StudentDev\Documents\GitHub\Akmit-ASP.NET\Akmit\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\StudentDev\Documents\GitHub\Akmit-ASP.NET\Akmit\obj\Debug\netcoreapp3.1\Akmit.MvcApplicationPartsAssemblyInfo.cs
