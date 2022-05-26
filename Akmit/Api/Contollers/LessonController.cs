@@ -39,12 +39,12 @@ namespace Akmit.Api.Contollers
             }
         }
 
-        [HttpDelete("delete/{classRtoId}/{dayTitle}/{number}")]
-        public async Task<ActionResult> Delete(int classRtoId, string dayTitle, int number)
+        [HttpPost("delete")]
+        public async Task<ActionResult> Delete(LessonDeleteDto lessonDeleteDto)
         {
             try
             {
-                await _lessonService.Delete(classRtoId, dayTitle, number);
+                await _lessonService.Delete(lessonDeleteDto.ClassRtoId, lessonDeleteDto.DayTitle, lessonDeleteDto.Number);
                 return Ok();
             }
             catch (BadRequest e)
